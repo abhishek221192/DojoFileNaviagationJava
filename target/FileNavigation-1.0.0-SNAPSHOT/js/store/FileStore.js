@@ -37,7 +37,7 @@ define([
 		childrenAttr: 'dir',
 		parentAttr: 'parId',
 		labelAttr: 'name',
-		rootId: '/demo',
+		rootId: 'FileServlet',
 		rootLabel: 'demo',
 		skipWithNoChildren: true,
 
@@ -49,7 +49,7 @@ define([
 			var storeMaster, storeMemory, storeCache;
 
 			storeMaster = new JsonRest({
-				target: require.toUrl('rfe-php') + '/services/filesystem.php'
+				target: '/FileNavigation/'
 			});
 			this.storeMaster = lang.delegate(storeMaster, {
 				getPath: lang.hitch(this, this._getPath)
@@ -158,7 +158,7 @@ define([
 			}
 			// children not cached yet, query master store and add result to cache
 			else {
-				results = self.storeMaster.query(id + '/');	// query has to be a string, otherwise jsonrest will add a querystring instead of REST resource
+				results = self.storeMaster.query(id);	// query has to be a string, otherwise jsonrest will add a querystring instead of REST resource
 				alreadyCached = false;
 			}
 
@@ -167,14 +167,14 @@ define([
 					overwrite: true
 				};
 				// only display directories in the tree ? / add children to cache
-				resultsDirOnly = results.filter(function(child) {
-					if (!alreadyCached) {
-						// some items might already be cached from a previous drag n drop (though folder itself is not)
-						// Just overwrite (is this the right place to to this?)
-						self.storeMemory.put(child, options);	// saves looping twice, but should logically be in own foreEach
-					}
-					return child[self.childrenAttr];
-				});
+//				resultsDirOnly = results.filter(function(child) {
+//					if (!alreadyCached) {
+//						// some items might already be cached from a previous drag n drop (though folder itself is not)
+//						// Just overwrite (is this the right place to to this?)
+//						self.storeMemory.put(child, options);	// saves looping twice, but should logically be in own foreEach
+//					}
+//					return child[self.childrenAttr];
+//				});
 				children = this.skipWithNoChildren ? resultsDirOnly : results;
 
 				// notify tree by calling onComplete
