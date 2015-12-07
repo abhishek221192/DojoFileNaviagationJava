@@ -84,7 +84,7 @@ define([
 			this.tree = new Tree({
 				rfe: this,
 				model: this.store,
-				childrenAttrs: [this.store.childrenAttr],
+				childrenAttrs: [],
 				persist: cookie(this._cnDialogSettingsFolderState) || true
 			});
 			this.tree.placeAt(this.panes.treePane);

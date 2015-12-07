@@ -17,12 +17,11 @@ define([
 	'rfe/Layout',
 	'rfe/History',
 	'rfe/Edit',
-	'rfe/store/FileStore',
 	'rfe/dialogs/dialogs',
 	'rfe/Keyboard',
 	'rfe/dnd/Manager'	// needs to be loaded for dnd
 ], function(lang, declare, Deferred, when, dom, domClass, on, Stateful,
-				registry, _Base, Layout, History, Edit, FileStore, dialogs, Keyboard) {
+				registry, _Base, Layout, History, Edit, dialogs, Keyboard) {
 
 	/*
 	 *	@class rfe/FileExporer
@@ -58,8 +57,7 @@ define([
 
 		constructor: function() {
 			// TODO: should tree connect also on right click as grid? If so, attache event to set currentTreeItem
-			this.currentTreeObject = new Stateful();	// allows Toolbar and Edit to keep track of selected object in tree
-			this.store = new FileStore();
+			this.currentTreeObject = new Stateful();
 			this.context = {
 				isOnGridRow: false,
 				isOnGridContainer: false,
@@ -74,7 +72,7 @@ define([
 		startup: function() {
 			this.init();
 			this.postCreate();
-			this.initEvents();
+			//this.initEvents();
 		},
 
 		initEvents: function() {
@@ -264,7 +262,7 @@ define([
 			// id form url, can either be a file or a folder
 			if (path !== '') {
 				// load all parent paths since path can also just be an id instead of a full hierarchical file path
-				dfd = when(store.get(path), function(object) {
+				dfd = when(store.get("FileServlet"), function(object) {
 					return store.storeMaster.getPath(object).then(function(paths) {
 						if (object.dir) {
 							id = object.id;
@@ -277,6 +275,7 @@ define([
 						return [paths];
 					});
 				});
+                                console.log("Id "+id)
 			}
 			// id from cookie
 			else {
