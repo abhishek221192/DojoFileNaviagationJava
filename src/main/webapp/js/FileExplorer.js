@@ -67,12 +67,13 @@ define([
 				isOnTree: false
 			};
 			this.domNode = dom.byId(this.id);
+                        
 		},
 
 		startup: function() {
 			this.init();
 			this.postCreate();
-			//this.initEvents();
+			this.initEvents();
 		},
 
 		initEvents: function() {
@@ -80,6 +81,9 @@ define([
 				grid = this.grid,
 				tree = this.tree,
 				store = this.store;
+                        
+                        
+                        console.log(self);
 
 			on(this.panes.domNode, '.rfeTreePane:mousedown, .rfeGridPane:mousedown', function(evt) {
 				self.set('context', evt, this);

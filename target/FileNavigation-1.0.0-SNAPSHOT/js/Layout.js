@@ -72,7 +72,7 @@ define([
 				rfe: this,
 				targetNodeIds: [this.panes.treePane.id, this.panes.gridPane.id]
 			});
-			this.initTree();
+			//this.initTree();
 			this.initGrid();
 			this.initDialogs();
 		},
