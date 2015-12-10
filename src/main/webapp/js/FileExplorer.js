@@ -17,11 +17,13 @@ define([
 	'rfe/Layout',
 	'rfe/History',
 	'rfe/Edit',
+	//'rfe/store/FileStore',
 	'rfe/dialogs/dialogs',
 	'rfe/Keyboard',
 	'rfe/dnd/Manager'	// needs to be loaded for dnd
 ], function(lang, declare, Deferred, when, dom, domClass, on, Stateful,
-				registry, _Base, Layout, History, Edit, dialogs, Keyboard) {
+				registry, _Base, Layout, History, Edit, //FileStore, 
+                                dialogs, Keyboard) {
 
 	/*
 	 *	@class rfe/FileExporer
@@ -57,7 +59,8 @@ define([
 
 		constructor: function() {
 			// TODO: should tree connect also on right click as grid? If so, attache event to set currentTreeItem
-			this.currentTreeObject = new Stateful();
+			this.currentTreeObject = new Stateful();	// allows Toolbar and Edit to keep track of selected object in tree
+			//this.store = new FileStore();
 			this.context = {
 				isOnGridRow: false,
 				isOnGridContainer: false,
@@ -67,13 +70,12 @@ define([
 				isOnTree: false
 			};
 			this.domNode = dom.byId(this.id);
-                        
 		},
 
 		startup: function() {
 			this.init();
 			this.postCreate();
-			this.initEvents();
+			//this.initEvents();
 		},
 
 		initEvents: function() {
@@ -81,9 +83,6 @@ define([
 				grid = this.grid,
 				tree = this.tree,
 				store = this.store;
-                        
-                        
-                        console.log(self);
 
 			on(this.panes.domNode, '.rfeTreePane:mousedown, .rfeGridPane:mousedown', function(evt) {
 				self.set('context', evt, this);
@@ -205,27 +204,9 @@ define([
 		 * Reload file explorer.
 		 */
 		reload: function() {
-			//window.location.reload();
-			// TODO: only reload files and folders
-
-			//var dndController = this.tree.dndController.declaredClass;
-			this.store.storeMemory.setData([]);
-			this.grid.refresh();
-
-			// reset and rebuild tree
-			//this.tree.dndController = null;
-			this.tree._itemNodesMap = {};
-			this.tree.rootNode.destroyRecursive();
-			this.tree.rootNode.state = "UNCHECKED";
-			//this.tree.dndController = dndController; //'rfe.dnd.TreeSource',
-			this.tree.postMixInProperties();
-		//	this.tree._load();
-			this.tree.postCreate();
-			this.initState();
-
+			alert("Not implemented Yet")
 
 		},
-
 		/**
 		 * Set object properties describing on which part of the file explorer we are on.
 		 * @param {Event} evt
@@ -233,19 +214,19 @@ define([
 		 */
 		_setContext: function(evt, node) {
 			var widget = registry.getEnclosingWidget(evt.target),
-				isGridRow = this.grid.row(evt) !== undefined,
+				//isGridRow = this.grid.row(evt) !== undefined,
 				isTreeRow = widget && widget.baseClass === 'dijitTreeNode';
 
 			node = node || widget.domNode;
 
 			this.context = {
-				isOnGridRow: isGridRow,
-				isOnGridContainer: domClass.contains(node, 'rfeGridPane') && !isGridRow,
+				//isOnGridRow: isGridRow,
+				isOnGridContainer: domClass.contains(node, 'rfeGridPane'),
 				isOnTreeRow: isTreeRow,
 				isOnTreeContainer: widget && widget.baseClass === 'dijitTree'
 			};
 
-			this.context.isOnGrid = this.context.isOnGridRow || this.context.isOnGridContainer;
+			//this.context.isOnGrid = this.context.isOnGridRow || this.context.isOnGridContainer;
 			this.context.isOnTree = this.context.isOnTreeRow || this.context.isOnTreeContainer;
 		},
 
@@ -253,80 +234,6 @@ define([
 		 * Initializes the default or last state of the tree and the grid.
 		 * Expects the tree to be loaded and expanded otherwise it will be set to root, then displays the correct folder in the grid.
 		 */
-		initState: function() {
-			var self = this, arr, id,
-				tree = this.tree,
-				grid = this.grid,
-				store = this.store,
-				file = false,
-				path = window.location.pathname.replace(this.origPageUrl, ''),
-				paths,
-				dfd = new Deferred();
-
-			// id form url, can either be a file or a folder
-			if (path !== '') {
-				// load all parent paths since path can also just be an id instead of a full hierarchical file path
-				dfd = when(store.get("FileServlet"), function(object) {
-					return store.storeMaster.getPath(object).then(function(paths) {
-						if (object.dir) {
-							id = object.id;
-						}
-						else {
-							file = object;
-							id = object.parId; // display parent folder of file in tree
-							paths.pop();
-						}
-						return [paths];
-					});
-				});
-                                console.log("Id "+id)
-			}
-			// id from cookie
-			else {
-				paths = this.tree.loadPaths();
-				if (paths.length > 0) {
-					// we only use last object in array to set the folders in the grid (normally there would be one selection only anyway)
-					arr = paths[paths.length - 1];
-					id = path = arr[arr.length - 1];
-				}
-				// use tree root
-				else {
-					id = tree.rootNode.item.id;
-				}
-				dfd.resolve(paths);
-			}
-
-			// expand all paths
-			dfd = dfd.then(function(paths) {
-				return tree.set('paths', paths);
-			});
-			// get object from id of last item in path
-			dfd = dfd.then(function() {
-				return when(store.get(id), function(object) {
-					self.set('history', path);
-					self.currentTreeObject.set(object);
-					self.context.isOnTreeRow = true;
-					return object;
-				});
-			});
-			// get objects children and display them in grid
-			dfd = dfd.then(function(object) {
-					return when(store.getChildren(object), function() {	// load children puts them in the cache, then set grid's store
-						var row, cell;
-						// Setting caching store for grid would not use cache, because cache.query() always uses the
-						// master store => use storeMemory.
-						grid.set('store', store.storeMemory, { parId: id });
-						if (file) {
-							row = grid.row(file.id);
-							cell = grid.cell(file, 'name');
-							grid.select(row);
-							grid.focus(grid.cellNavigation ? cell : row);
-						}
-					});
-			});
-			return dfd;
-		},
-
 		showFileDetails: function() {
 			// Note: A visible file/folder object is always loaded
 			var dialog, id, store = this.store,

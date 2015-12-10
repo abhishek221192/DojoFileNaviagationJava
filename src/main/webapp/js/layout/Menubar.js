@@ -176,8 +176,10 @@ define([
 		 */
 		enableMenuItems: function(context) {
 			// Note: to prevent ambiguity, delete, rename and properties is only available for grid contextmenu
-			var id, selected = false, selection = this.rfe.grid.selection;
-
+			var id, selected = false;
+                        
+                        var selection="test";
+                                
 			for (id in selection) {
 				if (selection.hasOwnProperty(id) && selection[id] === true) {
 					selected = true;

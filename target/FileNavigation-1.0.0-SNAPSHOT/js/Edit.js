@@ -100,16 +100,18 @@ define([
 			var context = this.context,
 				widget = context.isOnGrid ? this.grid : this.tree,
 				store = this.store;
+                        
+                        console.log(object)
 
-			return this.create(object).then(lang.hitch(this, function(object) {
-				var element, column;
-
-				if (context.isOnGrid) {
-					column = widget.columns[store.labelAttr];
-					element = widget.get('editableElement', object.id, column.field);
-					widget.edit(element);
-				}
-			}));
+//			return this.create(object).then(lang.hitch(this, function(object) {
+//				var element, column;
+//
+//				if (context.isOnGrid) {
+//					column = widget.columns[store.labelAttr];
+//					element = widget.get('editableElement', object.id, column.field);
+//					widget.edit(element);
+//				}
+//			}));
 		},
 
 		/**

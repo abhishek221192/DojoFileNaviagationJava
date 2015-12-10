@@ -1,0 +1,132 @@
+/*
+Simple Theme v 1.10 Black Edition - Please do not plagiarize
+2010 Copyright DG Kim
+Designed for AoPS user blogs
+*/
+
+/* body and entries */
+body{
+    background-image: url(http://www.cyneer.com/dojo_styles/simple/black/gradient.png) !important;
+    background-repeat: repeat-x;
+    background-position: left top;
+    background-attachment: inherit;
+    background-color: #000000;
+    color: #000000;
+}
+#wrapper{
+    background-image: none;
+    background-color: transparent;
+    border: none;
+    width: 800px;   
+}
+#content{
+    background-image: url(http://www.cyneer.com/dojo_styles/simple/black/top.gif);
+    background-repeat: no-repeat;
+    background-color: #bdbdbd;
+    padding: 10px;
+}
+.entry{
+    width: 450px;
+}
+div.entrywrap{
+    border: none;
+    background-color: #bdbdbd;
+}
+.row1{
+    background-color: #bdbdbd;
+}
+.row2{
+    background-color: #bdbdbd;
+}
+
+/* nav-bar */
+#navigation_box{
+    border: none;
+    background-color: transparent;
+    margin-bottom: none;
+}
+#left_navigation_box{
+    font-size: 16px;
+}
+
+/* header */
+#header{
+    background-color: transparent;
+    border: none;
+    height: 200px;
+    background-image: url(http://www.cyneer.com/dojo_styles/simple/black/header.png);
+    background-repeat: no-repeat;
+    margin-top: 75px;
+}
+#header h1{
+    color: #FFFFFF;
+    text-align: left !important;
+    font-size: 48px;
+    background-color: transparent;
+}
+
+/* side */
+#side{
+    width: 200px;
+}
+fieldset{
+    border: none;
+}
+li.row1{
+    background-color: #bdbdbd;
+    width: 165px;
+    word-wrap: break-word;
+}
+li.row2{
+    background-color: #bdbdbd;
+    width: 165px;
+    word-wrap: break-word;
+}
+
+/* footer and various coloring */
+#footer{
+    background-image: url(http://www.cyneer.com/dojo_styles/simple/black/bottom.gif);
+    background-repeat: no-repeat;
+    height: 100px;
+}
+div.quotetitle{
+    border-top-color: #dbdbce;
+    border-top-width: 1px;
+    border-top-style: solid;
+    padding: 5px;
+    width: 90%;
+}
+div.quotecontent{
+    border-bottom-color: #dbdbce;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    padding: 5px;
+    width: 90%;
+}
+div.codetitle{
+    border-top-color: #dbdbce;
+    border-top-width: 1px;
+    border-top-style: solid;
+    padding: 5px;
+    width: 90%;
+}
+div.codecontent{
+    border-bottom-color: #dbdbce;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    padding: 5px;
+    width: 90%;
+    font-family: Courier New, Courier New;
+}
+div.codetitle, div.codecontent {
+    background-color: #ebeadd;
+    border-right-color: #dbdbce;
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-left-color: #dbdbce;
+    border-left-width: 1px;
+    border-left-style: solid;
+}
+a:link {color: #000000; text-decoration: none;}
+a:visited {color: #000000; text-decoration: none;}
+a:hover {color: #ff9900; text-decoration: underline;}

@@ -82,18 +82,19 @@ define([
 		 * @param {object} context
 		 */
 		enableMenuItems: function(context) {
-			var id, selected = false,
-				selection = context.isOnGrid ? this.rfe.grid.selection : this.rfe.tree.dndSource.selection;
+			var id, selected = true;
+				//selection = context.isOnGrid ? this.rfe.grid.selection : this.rfe.tree.dndSource.selection;
 
 			// set file properties menu depending on if at least one file object is selected
-			if (selection && context.isOnGrid) {
-				// note: disable here if not in selection
-				for (id in selection) {
-					selected = true;
-					break;
-				}
-				this.menuItems.rename.set('disabled', !selected);
-			}
+                        //---------------------****** Add Id  ******-----------------------
+//			if (selection) {
+//				// note: disable here if not in selection
+//				for (id in selection) {
+//					selected = true;
+//					break;
+//				}
+//				this.menuItems.rename.set('disabled', !selected);
+//			}
 
 			this.menuItems.del.set('disabled', !selected);
 			this.menuItems.properties.set('disabled', !selected);
