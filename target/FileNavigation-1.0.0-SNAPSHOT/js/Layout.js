@@ -148,6 +148,7 @@ define([
 			}))
                     }
             });
+            this.tree.dndSource = this.dndController;
             
             this.tree.placeAt(this.panes.treePane);
         },

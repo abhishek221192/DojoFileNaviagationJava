@@ -30,30 +30,8 @@ define([
 
 			function remove(id) {
 				// note: remove creates closure for id in loop
-				var obj = store.storeMemory.get(id),
-					dialog = dialogs.getByFileObj('deleteFile', obj);
-
-				dfds[i + 1] = dfds[i].then(function(skip) {
-					if (!skip) {
-						return dialog.show();
-					}
-					else {
-						var dfd = new Deferred();
-						dfd.resolve(true);
-						return dfd;
-					}
-				}).then(function(skip) {
-					store.remove(id).then(function() {
-						self.removeHistory(id);
-						// point address bar (history) to parent folder of deleted
-						window.history.pushState('', '', self.origPageUrl + obj.parId + window.location.search);
-						if (self.context.isOnTree) {
-							obj = self.store.storeMemory.get(obj.parId);
-							self.display(obj);
-						}
-					});
-					return skip;
-				}, error);
+                                console.log(id);
+				
 
 				i++;
 			}

@@ -72,6 +72,8 @@ define([
 		},
 
 		_openMyself: function() {
+                        var selected = this.tree.selectedItem;
+                        console.log(selected)
 			// note: handle enabling of contextmenu items after selecting and not on mousedown since we need to now if an item is selected or deselected
 			this.enableMenuItems(this.rfe.context);
 			this.inherited('_openMyself', arguments);
@@ -82,8 +84,10 @@ define([
 		 * @param {object} context
 		 */
 		enableMenuItems: function(context) {
-			var id, selected = true;
-				//selection = context.isOnGrid ? this.rfe.grid.selection : this.rfe.tree.dndSource.selection;
+			var id, selected = true,
+				selection = this.tree;
+                        
+                        console.log(selection)
 
 			// set file properties menu depending on if at least one file object is selected
                         //---------------------****** Add Id  ******-----------------------
