@@ -9,7 +9,7 @@ define([
     
     "dojo/store/Memory", "dojo/store/Observable",
     "dijit/Tree", "dijit/tree/ObjectStoreModel", "dijit/tree/dndSource",
-    
+    'rfe/dnd/TreeSource',
     'rfe/dnd/GridSource',
     'dijit/registry',
     'dijit/form/CheckBox',
@@ -20,7 +20,7 @@ define([
     'rfe/Console',
     'rfe/ContextMenu'
 ], function (lang, declare, cookie, domConstruct, query, //Tree, Grid, 
-             Memory, Observable, Tree, ObjectStoreModel,dndSource,
+             Memory, Observable, Tree, ObjectStoreModel,dndSource,TreeSource,
         GridSource, registry, CheckBox, Dialog, Toolbar, Menubar, Panes, Console, ContextMenu) {
 
     /**
@@ -141,8 +141,14 @@ define([
             
             this.tree = new Tree({
                 model: this.store,
-                dndController: dndSource
-            })
+                dndController: function(arg, params) {
+			return new TreeSource(arg, lang.mixin(params || {}, {
+				accept: ['dgrid-row'],
+				rfe: arg.rfe
+			}))
+                    }
+            });
+            
             this.tree.placeAt(this.panes.treePane);
         },
         initGrid: function () {
