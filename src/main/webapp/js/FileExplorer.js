@@ -96,38 +96,8 @@ define([
 			});
 			tree.on('load', function() {
 				self.initState().then(function() {
+                                    console.log("Tree load")
 
-					grid.on('.dgrid-row:click, .dgrid-row:dblclick', function(evt) {
-						var object = grid.row(evt.target).data;
-
-						switch(evt.type) {
-							case 'dblclick':
-								if (object.dir) {
-									self.display(object).then(function() {
-										self.set('history', object.id);
-									});
-								}
-								else {
-									window.open(store.storeMaster.target + object.id, '_blank');
-								}
-								break;
-							case 'click':
-								self.set('history', object.id);
-								break;
-						}
-
-					});
-					grid.on('dgrid-datachange', function(evt) {
-						// catch using editor when renaming
-						var obj = evt.cell.row.data;
-
-						obj[store.labelAttr] = evt.value;
-						store.put(obj).then(function() {
-							grid.save();
-						}, function() {
-							grid.revert();
-						});
-					});
 				});
 			});
 		},

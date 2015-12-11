@@ -62,16 +62,14 @@ define([
             }, domConstruct.create('div'));
 
             this.panes.treePane.set('tabIndex', 20);
-            this.panes.gridPane.set('tabIndex', 30);
             this.menubar.placeAt(this.panes.menuPane.domNode);
             this.toolbar.placeAt(this.panes.menuPane.domNode);
             this.panes.startup();
 
-            this.console = new Console(null, domConstruct.create('div', null, this.panes.logPane.domNode));
-
+            
             this.editContextMenu = new ContextMenu({
                 rfe: this,
-                targetNodeIds: [this.panes.treePane.id, this.panes.gridPane.id]
+                targetNodeIds: [this.panes.treePane.id]
             });
             this.initTree();
             //this.initGrid();
@@ -140,6 +138,7 @@ define([
             }
             
             this.tree = new Tree({
+                root:false,
                 model: this.store,
                 dndController: function(arg, params) {
 			return new TreeSource(arg, lang.mixin(params || {}, {
@@ -150,7 +149,7 @@ define([
             });
             this.tree.dndSource = this.dndController;
             
-            this.tree.placeAt(this.panes.treePane);
+            this.tree.placeAt(this.panes.projectPane);
         },
         initGrid: function () {
             var div = domConstruct.create('div', null, this.panes.gridPane.domNode);
