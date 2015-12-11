@@ -63,7 +63,7 @@ define([
                 },
                 createIcon: function () {
 
-                                       
+
                     var img,
                             nodes = this.manager.nodes,
                             source = this.manager.source,
