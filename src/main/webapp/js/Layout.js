@@ -6,7 +6,7 @@ define([
     'dojo/query',
     //'rfe/Tree',
     //'rfe/Grid',
-    
+
     "dojo/store/Memory", "dojo/store/Observable",
     "dijit/Tree", "dijit/tree/ObjectStoreModel", "dijit/tree/dndSource",
     'rfe/dnd/TreeSource',
@@ -20,7 +20,7 @@ define([
     'rfe/Console',
     'rfe/ContextMenu'
 ], function (lang, declare, cookie, domConstruct, query, //Tree, Grid, 
-             Memory, Observable, Tree, ObjectStoreModel,dndSource,TreeSource,
+        Memory, Observable, Tree, ObjectStoreModel, dndSource, TreeSource,
         GridSource, registry, CheckBox, Dialog, Toolbar, Menubar, Panes, Console, ContextMenu) {
 
     /**
@@ -66,7 +66,7 @@ define([
             this.toolbar.placeAt(this.panes.menuPane.domNode);
             this.panes.startup();
 
-            
+
             this.editContextMenu = new ContextMenu({
                 rfe: this,
                 targetNodeIds: [this.panes.treePane.id]
@@ -124,32 +124,36 @@ define([
                 // children objects point to their parent (aka relational model)
                 return this.query({parent: this.getIdentity(object)});
             };
-            
-            
+
+
             // Wrap the store in Observable so that updates to the store are reflected to the Tree
             var storeD = new Observable(storeD);
 
             // Create the model and tree
             this.store = new ObjectStoreModel({store: storeD, query: {id: 'world'}});
             
-            this.store.add = function(object, options) {
-			console.log(JSON.stringify(object));
-			console.log(JSON.stringify(options));
-            }
-            
+            this.store.get=function(id)
+            {
+                return storeD.get(id);
+            };
+            this.store.remove=function(id)
+            {
+                return storeD.remove(id);
+            };
+
             this.tree = new Tree({
                 showRoot: false,
                 persist: true,
                 model: this.store,
-                dndController: function(arg, params) {
-			return new TreeSource(arg, lang.mixin(params || {}, {
-				accept: ['dgrid-row'],
-				rfe: arg.rfe
-			}))
-                    }
+                dndController: function (arg, params) {
+                    return new TreeSource(arg, lang.mixin(params || {}, {
+                        accept: ['dgrid-row'],
+                        rfe: arg.rfe
+                    }))
+                }
             });
             this.tree.dndSource = this.dndController;
-            
+
             this.tree.placeAt(this.panes.projectPane);
         },
         initGrid: function () {

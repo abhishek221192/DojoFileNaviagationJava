@@ -70,6 +70,7 @@ define([
 				i = 0;
 				len = selection.length;
 				for (; i < len; i++) {
+                                    if(selection[i]!=undefined)
 					selection[i].setSelected(false);
 				}
 				selection = this.getSelectedTreeNodes();

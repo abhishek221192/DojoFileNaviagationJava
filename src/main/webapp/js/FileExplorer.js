@@ -191,22 +191,39 @@ define([
          * Initializes the default or last state of the tree and the grid.
          * Expects the tree to be loaded and expanded otherwise it will be set to root, then displays the correct folder in the grid.
          */
+        pasteItem: function (child, oldParent, newParent, bCopy, insertIndex) {
+// make the this store available in all the inner functions
+            var store = this;
+// get the full oldParent object
+            store.get(oldParent.id).then(function (oldParent) {
+// get the full newParent object
+                store.get(newParent.id).then(function (newParent) {
+// get the oldParent's children and scan through it find the child object
+                    var oldChildren = oldParent.children;
+                    dojo.some(oldChildren, function (oldChild, i) {
+// it matches if the id's match
+                        if (oldChild.id == child.id) {
+// found the child, now remove it from the children array
+                            oldChildren.splice(i, 1);
+                            return true; // done, break out of the some() loop
+                        }
+                    });
+// do a put to save the oldParent with the modified children's array
+                    store.put(oldParent);
+// now insert the child object into the new parent,
+//using the insertIndex if available
+                    newParent.children.splice(insertIndex || 0, 0, child);
+// save changes to the newParent
+                    store.put(newParent);
+                });
+            });
+        },
         del: function () {
-            console.log((this.tree.selectedItem))
+             this.store.remove(this.tree.selectedItem.id);
         },
         create: function (object) {
-            var store = this.store,
-                    parId = this.currentTreeObject.get('id');
-
-            console.log((this.tree.selectedItem))
-            console.log(object);
-
-            object = lang.mixin(object || {}, {
-                parId: parId,
-                size: 0
-            });
-            object.name = object.dir ? 'new directory' : object.name = 'new text file.txt';
-            return store.add(object);
+            var item = {id: 'Test', name: 'Test', type: 'country', parent: this.tree.selectedItem.id};
+            this.store.newItem(item);
         },
         showFileDetails: function () {
             // Note: A visible file/folder object is always loaded
