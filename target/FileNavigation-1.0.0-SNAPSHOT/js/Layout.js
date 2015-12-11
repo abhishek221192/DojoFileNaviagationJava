@@ -82,39 +82,39 @@ define([
 
             var storeD = new Memory({
                 data: [
-                    {id: 'world', name: 'The earth', type: 'planet', population: '6 billion',isDir:true},
+                    {id: 'world', name: 'The earth', type: 'planet', population: '6 billion', isDir: true},
                     {id: 'AF', name: 'Africa', type: 'continent', population: '900 million', area: '30,221,532 sq km',
-                        timezone: '-1 UTC to +4 UTC', parent: 'world',isDir:true},
-                    {id: 'EG', name: 'Egypt', type: 'country', parent: 'AF',isDir:true},
-                    {id: 'KE', name: 'Kenya', type: 'country', parent: 'AF',isDir:true},
-                    {id: 'Nairobi', name: 'Nairobi', type: 'city', parent: 'KE',isDir:true},
-                    {id: 'Mombasa', name: 'Mombasa', type: 'city', parent: 'KE',isDir:true},
-                    {id: 'SD', name: 'Sudan', type: 'country', parent: 'AF',isDir:true},
-                    {id: 'Khartoum', name: 'Khartoum', type: 'city', parent: 'SD',isDir:true},
-                    {id: 'AS', name: 'Asia', type: 'continent', parent: 'world',isDir:true},
-                    {id: 'CN', name: 'China', type: 'country', parent: 'AS',isDir:true},
-                    {id: 'IN', name: 'India', type: 'country', parent: 'AS',isDir:true},
-                    {id: 'RU', name: 'Russia', type: 'country', parent: 'AS',isDir:true},
-                    {id: 'MN', name: 'Mongolia', type: 'country', parent: 'AS',isDir:true},
-                    {id: 'OC', name: 'Oceania', type: 'continent', population: '21 million', parent: 'world',isDir:true},
-                    {id: 'AU', name: 'Australia', type: 'country', population: '21 million', parent: 'OC',isDir:true},
-                    {id: 'EU', name: 'Europe', type: 'continent', parent: 'world',isDir:true},
-                    {id: 'DE', name: 'Germany', type: 'country', parent: 'EU',isDir:true},
-                    {id: 'FR', name: 'France', type: 'country', parent: 'EU',isDir:true},
-                    {id: 'ES', name: 'Spain', type: 'country', parent: 'EU',isDir:true},
-                    {id: 'IT', name: 'Italy', type: 'country', parent: 'EU',isDir:true},
-                    {id: 'NA', name: 'North America', type: 'continent', parent: 'world',isDir:true},
+                        timezone: '-1 UTC to +4 UTC', parent: 'world', isDir: true},
+                    {id: 'EG', name: 'Egypt', type: 'country', parent: 'AF', isDir: true},
+                    {id: 'KE', name: 'Kenya', type: 'country', parent: 'AF', isDir: true},
+                    {id: 'Nairobi', name: 'Nairobi', type: 'city', parent: 'KE', isDir: true},
+                    {id: 'Mombasa', name: 'Mombasa', type: 'city', parent: 'KE', isDir: true},
+                    {id: 'SD', name: 'Sudan', type: 'country', parent: 'AF', isDir: true},
+                    {id: 'Khartoum', name: 'Khartoum', type: 'city', parent: 'SD', isDir: true},
+                    {id: 'AS', name: 'Asia', type: 'continent', parent: 'world', isDir: true},
+                    {id: 'CN', name: 'China', type: 'country', parent: 'AS', isDir: true},
+                    {id: 'IN', name: 'India', type: 'country', parent: 'AS', isDir: true},
+                    {id: 'RU', name: 'Russia', type: 'country', parent: 'AS', isDir: true},
+                    {id: 'MN', name: 'Mongolia', type: 'country', parent: 'AS', isDir: true},
+                    {id: 'OC', name: 'Oceania', type: 'continent', population: '21 million', parent: 'world', isDir: true},
+                    {id: 'AU', name: 'Australia', type: 'country', population: '21 million', parent: 'OC', isDir: true},
+                    {id: 'EU', name: 'Europe', type: 'continent', parent: 'world', isDir: true},
+                    {id: 'DE', name: 'Germany', type: 'country', parent: 'EU', isDir: true},
+                    {id: 'FR', name: 'France', type: 'country', parent: 'EU', isDir: true},
+                    {id: 'ES', name: 'Spain', type: 'country', parent: 'EU', isDir: true},
+                    {id: 'IT', name: 'Italy', type: 'country', parent: 'EU', isDir: true},
+                    {id: 'NA', name: 'North America', type: 'continent', parent: 'world', isDir: true},
                     {id: 'MX', name: 'Mexico', type: 'country', population: '108 million', area: '1,972,550 sq km',
-                        parent: 'NA',isDir:true},
-                    {id: 'Mexico City', name: 'Mexico City', type: 'city', population: '19 million', timezone: '-6 UTC', parent: 'MX',isDir:true},
-                    {id: 'Guadalajara', name: 'Guadalajara', type: 'city', population: '4 million', timezone: '-6 UTC', parent: 'MX',isDir:true},
-                    {id: 'CA', name: 'Canada', type: 'country', population: '33 million', area: '9,984,670 sq km', parent: 'NA',isDir:true},
-                    {id: 'Ottawa', name: 'Ottawa', type: 'city', population: '0.9 million', timezone: '-5 UTC', parent: 'CA',isDir:true},
-                    {id: 'Toronto', name: 'Toronto', type: 'city', population: '2.5 million', timezone: '-5 UTC', parent: 'CA',isDir:true},
-                    {id: 'US', name: 'United States of America', type: 'country', parent: 'NA',isDir:true},
-                    {id: 'SA', name: 'South America', type: 'continent', parent: 'world',isDir:true},
-                    {id: 'BR', name: 'Brazil', type: 'country', population: '186 million', parent: 'SA',isDir:true},
-                    {id: 'AR', name: 'Argentina', type: 'country', population: '40 million', parent: 'SA',isDir:true}
+                        parent: 'NA', isDir: true},
+                    {id: 'Mexico City', name: 'Mexico City', type: 'city', population: '19 million', timezone: '-6 UTC', parent: 'MX', isDir: true},
+                    {id: 'Guadalajara', name: 'Guadalajara', type: 'city', population: '4 million', timezone: '-6 UTC', parent: 'MX', isDir: true},
+                    {id: 'CA', name: 'Canada', type: 'country', population: '33 million', area: '9,984,670 sq km', parent: 'NA', isDir: true},
+                    {id: 'Ottawa', name: 'Ottawa', type: 'city', population: '0.9 million', timezone: '-5 UTC', parent: 'CA', isDir: true},
+                    {id: 'Toronto', name: 'Toronto', type: 'city', population: '2.5 million', timezone: '-5 UTC', parent: 'CA', isDir: true},
+                    {id: 'US', name: 'United States of America', type: 'country', parent: 'NA', isDir: true},
+                    {id: 'SA', name: 'South America', type: 'continent', parent: 'world', isDir: true},
+                    {id: 'BR', name: 'Brazil', type: 'country', population: '186 million', parent: 'SA', isDir: true},
+                    {id: 'AR', name: 'Argentina', type: 'country', population: '40 million', parent: 'SA', isDir: true}
                 ]
             });
 
@@ -124,9 +124,9 @@ define([
                 // children objects point to their parent (aka relational model)
                 return this.query({parent: this.getIdentity(object)});
             };
-            
-            storeD.mayHaveChildren=function (){
-               return false;
+
+            storeD.mayHaveChildren = function () {
+                return false;
             }
 
 
@@ -135,10 +135,10 @@ define([
 
             // Create the model and tree
             this.store = new ObjectStoreModel({store: storeD, query: {id: 'world'}});
-            
-            
-            this.store.mayHaveChildren=function (item){
-               return item.isDir;
+
+
+            this.store.mayHaveChildren = function (item) {
+                return item.isDir;
             };
 
             this.store.get = function (id)
@@ -150,39 +150,7 @@ define([
                 return storeD.remove(id);
             };
 
-            dojo.declare("my.tree", [Tree], {
-                getIconClass: function fileIconClass(item, nodeExpanded) {
-                    var store = item._S,
-                            get = function () {
-                                return item;
-                            };
-                    // scope: dijit.Tree
-                    if (item.isDir) {
-
-                        if (item.isDir) {
-                            return (nodeExpanded ? "dijitFolderOpened" : "dijitFolderClosed");
-                        } else {
-                            return "dijitLeaf";
-                        }
-
-                    } else {
-
-                        return "dijitLeaf";
-
-                    }
-                },
-                onClick: function (item, treeNode, e) {
-
-                    var store = item._S,
-                            get = function () {
-                                return  item;
-                            };
-                    if (item.isDir)
-                        this.set("selectedItems", []);
-                }
-            });
-
-            this.tree = new my.tree({
+            this.tree = new Tree({
                 showRoot: false,
                 persist: true,
                 model: this.store,
@@ -191,6 +159,13 @@ define([
                         accept: ['dgrid-row'],
                         rfe: arg.rfe
                     }))
+                },
+                getIconClass: function fileIconClass(item, nodeExpanded) {
+                    if (item.isDir) {
+                        return (nodeExpanded ? "dijitFolderOpened" : "dijitFolderClosed");
+                    } else {
+                        return "dijitLeaf";
+                    }
                 },
             });
             this.tree.dndSource = this.dndController;
