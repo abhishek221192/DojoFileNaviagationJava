@@ -58,7 +58,7 @@ define([
 			menu.addChild(new MenuItem({
 				label: 'Directory',
 				onClick: lang.hitch(this.rfe, function() {
-					this.createRename({
+					this.create({
 						dir: true
 					});
 				})
@@ -66,14 +66,14 @@ define([
 			menu.addChild(new MenuItem({
 				label: 'File',
 				onClick: lang.hitch(this.rfe, function() {
-					this.createRename(null);	// do not call directly from onclick, otherwise event object would be passed
+					this.create(null);	// do not call directly from onclick, otherwise event object would be passed
 				})
 			}));
 		},
 
 		_openMyself: function() {
-                        var selected = this.tree.selectedItem;
-                        console.log(selected)
+                        
+                        console.log(this.rfe.tree.selectedItem)
 			// note: handle enabling of contextmenu items after selecting and not on mousedown since we need to now if an item is selected or deselected
 			this.enableMenuItems(this.rfe.context);
 			this.inherited('_openMyself', arguments);
@@ -87,7 +87,6 @@ define([
 			var id, selected = true,
 				selection = this.tree;
                         
-                        console.log(selection)
 
 			// set file properties menu depending on if at least one file object is selected
                         //---------------------****** Add Id  ******-----------------------

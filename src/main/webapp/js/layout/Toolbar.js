@@ -97,42 +97,18 @@ define([
 			}));
 			this.addChild(new ToolbarSeparator({ id: 'rfeTbSeparatorSearch'}));
 
-			this.addChild(new SearchBox({
-				target: require.toUrl('rfe-php') + '/services/filesystem.php/search',
-				rfe: rfe
-			}));
 
 			// TODO: file and label properties should not be hardcoded
 			div = domConstruct.create('div', {
 				'class': 'rfeToolbarSort'
 			}, this.domNode);
-			domConstruct.create('label', {
-				innerHTML: 'sort by'
-			}, div);
-
-			var options = array.map(fileObject.sortOptions, function(prop) {
-				return { label: fileObject.label[prop], value: prop }
-			});
-			selSort = new Select({
-				options: options
-			}).placeAt(div);
+                        
 			bt4 = new Button({
 				label: 'sort',
 				showLabel: false,
 				iconClass: 'rfeIcon rfeToolbarIconSortAsc',
 				onClick: function () {
-					var node, field = selSort.get('value');
-					if (rfe.grid.view === 'icons') {
-						rfe.grid.set('multisort', field, rfe.grid._sort);
-					}
-					else {
-						// simulate clicking on grid column
-						node = query('th.field-' + field)[0];
-						on.emit(node, 'click', {
-							cancelable: true,
-							bubbles: true
-						});
-					}
+					alert("Replace with logout")
 				}
 			}).placeAt(div);
 

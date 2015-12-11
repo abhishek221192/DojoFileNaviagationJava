@@ -18,7 +18,7 @@ define([
 		/**
 		 * Delete selected file or folder object(s).
 		 */
-		del: function() {
+		delete: function() {
 			// Note: delete is a reserved word -> del
             // TODO: return deferred list of all deleted items
 			// Notes:
@@ -30,7 +30,7 @@ define([
 
 			function remove(id) {
 				// note: remove creates closure for id in loop
-                                console.log(id);
+                                console.log(this)
 				
 
 				i++;

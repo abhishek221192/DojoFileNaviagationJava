@@ -138,7 +138,8 @@ define([
             }
             
             this.tree = new Tree({
-                root:false,
+                showRoot: false,
+                persist: true,
                 model: this.store,
                 dndController: function(arg, params) {
 			return new TreeSource(arg, lang.mixin(params || {}, {

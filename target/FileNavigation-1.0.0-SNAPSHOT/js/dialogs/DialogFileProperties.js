@@ -47,7 +47,7 @@ define([
 		 */
 		hide: function() {
 			this.inherited('hide', arguments);
-			this.destroy();
+			//this.destroy();
 		}
 	});
 });

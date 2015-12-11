@@ -44,13 +44,13 @@ define([
 			}));
 			subMenuFile.addChild(new MenuItem({
 				label: 'File',
-				onClick: lang.hitch(this.rfe, this.rfe.createRename),
+				onClick: lang.hitch(this.rfe, this.rfe.create),
 				iconClass: 'rfeIcon rfeMenuIconFile'
 			}));
 			subMenuFile.addChild(new MenuItem({
 				label: 'Directory',
 				onClick: lang.hitch(this.rfe, function() {
-					this.createRename({
+					this.create({
 						dir: true
 					});
 				}),
