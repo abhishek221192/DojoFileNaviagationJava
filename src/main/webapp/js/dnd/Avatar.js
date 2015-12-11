@@ -22,6 +22,7 @@ define([
 
             return declare([Avatar], {
                 constructor: function () {
+                    alert("Move Started");
                     this.images = images;
 
                     this.isA11y = domClass.contains(window.body(), "dijit_a11y");
