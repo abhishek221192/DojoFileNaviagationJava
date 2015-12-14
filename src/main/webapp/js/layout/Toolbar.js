@@ -104,9 +104,8 @@ define([
 			}, this.domNode);
                         
 			bt4 = new Button({
-				label: 'sort',
-				showLabel: false,
-				iconClass: 'rfeIcon rfeToolbarIconSortAsc',
+				label: 'Logout',
+				iconClass: 'dijitEditorIconlogout',
 				onClick: function () {
 					alert("Replace with logout")
 				}

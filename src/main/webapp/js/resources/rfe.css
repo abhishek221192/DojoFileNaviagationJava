@@ -252,4 +252,48 @@ p {
 	margin: 0;
 }
 
+
+
+.dijitEditorIconleftarrow {
+                background: url(images/left-arrow.png);
+                background-size: 16px 16px;
+                background-repeat: no-repeat;
+                width:16px;
+                height:16px;
+            }
+
+.dijitEditorIconrightarrow {
+                background: url(images/right-arrow.png);
+                background-size: 16px 16px;
+                background-repeat: no-repeat;
+                margin-left:5px;
+                margin-right:5px;
+                width:16px;
+                height:16px;
+            }
+.dijitEditorIconrefresh {
+                background: url(images/refresh.png);
+                background-size: 16px 16px;
+                background-repeat: no-repeat;
+                margin-left:5px;
+                width:16px;
+                height:16px;
+            }
+.dijitEditorIconmax {
+                background: url(images/max.png);
+                background-size: 16px 16px;
+                background-repeat: no-repeat;
+                margin-left:5px;
+                width:16px;
+                height:16px;
+            }
+.dijitEditorIconlogout {
+                background: url(images/logout.png);
+                background-size: 16px 16px;
+                background-repeat: no-repeat;
+                margin-left:5px;
+                width:16px;
+                height:16px;
+            }
+
 /*** End rfeDialogAbout ***/

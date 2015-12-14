@@ -107,21 +107,26 @@ define([
 				}
 				//submenuView[view].set('checked', true);
 			}));
-
-			menuItemLayout = new CheckedMenuItem({
-				label: 'Layout vertical',
-				checked: panes.get('view') !== 'horizontal',
-				onClick: function() {
-					panes.set('view', menuItemLayout.get('checked') === true ? 'vertical' : 'horizontal');
-				}
-			});
-			menuView.addChild(menuItemLayout);
 			menuView.addChild(new CheckedMenuItem({
 				id: 'rfeMenuItemFolders',
 				label: 'Navigation pane',
 				checked: panes.get('treePaneVisible') === true,
 				onChange: function() {
 					panes.set('treePaneVisible', this.checked);
+				}
+			}));
+			menuView.addChild(new CheckedMenuItem({
+				label: 'Output pane',
+				checked: panes.get('outputPaneVisible') === true,
+				onChange: function() {
+					panes.set('outputPaneVisible', this.checked);
+				}
+			}));
+			menuView.addChild(new CheckedMenuItem({
+				label: 'Pallate',
+				checked: panes.get('pallateVisible') === true,
+				onChange: function() {
+					panes.set('pallateVisible', this.checked);
 				}
 			}));
 
