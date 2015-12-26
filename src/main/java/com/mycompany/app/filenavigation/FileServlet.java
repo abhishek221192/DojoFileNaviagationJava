@@ -30,7 +30,7 @@ public class FileServlet extends HttpServlet {
         
         String fileId = request.getParameter("fileId");
         if (fileId == null) {
-            File file = new File("C:\\Users\\abhisheksingh\\Desktop\\Type");
+            File file = new File(System.getProperty("user.home"));
             
             FileDetail fileDetail = new FileDetail();
             fileDetail.setId(file.getPath());
